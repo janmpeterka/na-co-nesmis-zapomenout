@@ -49,15 +49,9 @@ class User(db.Model, UserMixin, ItemMixin):
 
     new_password_token = db.Column(db.String(255), nullable=True)
 
-    diets = db.relationship(
-        "Diet", order_by="desc(Diet.active)", back_populates="author"
-    )
-
     sent_mails = db.relationship(
         "SentMail", order_by="desc(SentMail.created_at)", back_populates="recipient"
     )
-
-    daily_plans = db.relationship("DailyPlan", back_populates="author")
 
     @staticmethod
     @login.user_loader
