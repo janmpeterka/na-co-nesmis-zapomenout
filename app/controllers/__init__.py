@@ -1,9 +1,9 @@
-def register_all_controllers(application):
-    from .errors import ErrorsView
-    from .index import IndexView
+# def register_all_controllers(application):
+#     from .errors import ErrorsView
+#     from .index import IndexView
 
-    ErrorsView.register(application)
-    IndexView.register(application)
+#     ErrorsView.register(application)
+#     IndexView.register(application)
 
 
 def register_error_handlers(application):
