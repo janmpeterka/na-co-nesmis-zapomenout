@@ -15,7 +15,4 @@ class RequestLog(db.Model, BaseMixin):
     remote_addr = db.Column(db.String(255))
     duration = db.Column(db.Float(precision=4))
 
-    item_type = db.Column(db.String(255))
-    item_id = db.Column(db.Integer)
-
     user_id = db.Column(db.ForeignKey(("users.id")), index=True)

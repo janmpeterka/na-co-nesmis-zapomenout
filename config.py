@@ -6,6 +6,7 @@ class Config(object):
 
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SQLALCHEMY_DATABASE_URI = os.environ.get("DB_STRING")
+    SQLALCHEMY_DATABASE_URI = "mysql+pymysql://jan:mainframe@localhost:3306/nezapomen"
 
     # MAIL_SERVER = "smtp.googlemail.com"
     # MAIL_PORT = 465

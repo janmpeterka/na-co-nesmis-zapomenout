@@ -3,16 +3,13 @@ from flask_mail import Mail
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 
-import pymysql
-import numpy as np
-
-pymysql.converters.encoders[np.float64] = pymysql.converters.escape_float
-pymysql.converters.conversions = pymysql.converters.encoders.copy()
-pymysql.converters.conversions.update(pymysql.converters.decoders)
 
 mail = Mail()
 db = SQLAlchemy()
 migrate = Migrate()
+
+# WIP - necessary before anything from models is imported elswhere
+import app.models
 
 
 def create_app(config_name="default"):
@@ -22,6 +19,11 @@ def create_app(config_name="default"):
     from config import configs
 
     application.config.from_object(configs[config_name])
+
+    # TODO - not loading from config for some reason
+    application.config[
+        "SQLALCHEMY_DATABASE_URI"
+    ] = "mysql+pymysql://jan:mainframe@localhost:3306/nezapomen"
 
     # APPS
     mail.init_app(application)
@@ -44,9 +46,5 @@ def create_app(config_name="default"):
     register_error_handlers(application)
 
     # MODULES
-
-    from .auth import create_module as auth_create_module
-
-    auth_create_module(application)
 
     return application

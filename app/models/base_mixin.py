@@ -21,7 +21,7 @@ class BaseMixin(object):
         my_objects = db.session.query(cls)
         return my_objects
 
-    def edit(self, **kw):
+    def update(self, **kw):
         try:
             db.session.commit()
             return True
@@ -30,7 +30,7 @@ class BaseMixin(object):
             application.logger.error("Edit error: {}".format(e))
             return False
 
-    def save(self, **kw):
+    def create(self, **kw):
         """Saves (new) object
         """
         try:
@@ -45,7 +45,7 @@ class BaseMixin(object):
             application.logger.error("Save error: {}".format(e))
             return False
 
-    def remove(self, **kw):
+    def delete(self, **kw):
         """Deletes object
         """
         try:
@@ -57,22 +57,22 @@ class BaseMixin(object):
             application.logger.error("Remove error: {}".format(e))
             return False
 
-    def expire(self, **kw):
-        """Dumps database changes
-        """
-        try:
-            db.session.expire(self)
-            return True
-        except Exception as e:
-            db.session.rollback()
-            application.logger.error("Expire error: {}".format(e))
-            return False
+    # def expire(self, **kw):
+    #     """Dumps database changes
+    #     """
+    #     try:
+    #         db.session.expire(self)
+    #         return True
+    #     except Exception as e:
+    #         db.session.rollback()
+    #         application.logger.error("Expire error: {}".format(e))
+    #         return False
 
-    def refresh(self, **kw):
-        try:
-            db.session.refresh(self)
-            return True
-        except Exception as e:
-            db.session.rollback()
-            application.logger.error("Refresh error: {}".format(e))
-            return False
+    # def refresh(self, **kw):
+    #     try:
+    #         db.session.refresh(self)
+    #         return True
+    #     except Exception as e:
+    #         db.session.rollback()
+    #         application.logger.error("Refresh error: {}".format(e))
+    #         return False
