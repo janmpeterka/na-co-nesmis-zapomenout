@@ -7,7 +7,6 @@ verify_ssl = true
 
 [packages]
 flask = "*"
-flask-login = "*"
 flask-sqlalchemy = "*"
 flask-wtf = "*"
 pymysql = "*"
@@ -15,6 +14,8 @@ flask-migrate = "*"
 gunicorn = "*"
 flask-classful = "*"
 flask-mail = "*"
+python-dotenv = "*"
+flask-security-too = "*"
 
 [requires]
 python_version = "3.8"
